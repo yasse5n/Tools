@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#1e1b4b" />
+      <stop offset="100%" stop-color="#030712" />
+    </radialGradient>
+    <linearGradient id="glow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#a855f7" />
+      <stop offset="50%" stop-color="#ec4899" />
+      <stop offset="100%" stop-color="#38bdf8" />
+    </linearGradient>
+    <filter id="neonBlur" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+  <rect width="512" height="512" rx="110" fill="url(#bg)" />
+  <circle cx="256" cy="256" r="180" fill="none" stroke="url(#glow)" stroke-width="14" opacity="0.8" filter="url(#neonBlur)" />
+  <circle cx="256" cy="256" r="140" fill="none" stroke="#ffffff" stroke-width="2" opacity="0.3" stroke-dasharray="8 8" />
+  <g filter="url(#neonBlur)">
+    <path d="M256 120 L275 220 L375 256 L275 292 L256 392 L237 292 L137 256 L237 220 Z" fill="url(#glow)" />
+    <circle cx="256" cy="256" r="32" fill="#ffffff" />
+  </g>
+  <circle cx="256" cy="256" r="16" fill="#a855f7" />
+</svg>

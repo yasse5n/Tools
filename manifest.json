@@ -1,0 +1,33 @@
+{
+  "id": "/",
+  "name": "معرض أعمال Yassen PS | مركز الأدوات الرقمية",
+  "short_name": "Tools Hub",
+  "description": "منصة رقمية متكاملة تجمع بين سابقة أعمال المطور Yassen PS وأكبر باقة أدوات رقمية مجانية 2026",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "theme_color": "#030712",
+  "background_color": "#030712",
+  "categories": ["utilities", "productivity", "developer tools"],
+  "icons": [
+    {
+      "src": "/pwa-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/pwa-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/pwa-maskable-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
