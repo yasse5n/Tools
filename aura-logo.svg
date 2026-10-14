@@ -1,0 +1,79 @@
+<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Left Pillar Cyan/Blue Gradient -->
+    <linearGradient id="auraLeftGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#22d3ee" />
+      <stop offset="35%" stop-color="#0284c7" />
+      <stop offset="100%" stop-color="#1e40af" />
+    </linearGradient>
+
+    <!-- Diagonal Transition Gradient: Cyan -> Indigo -> Purple -> Magenta -->
+    <linearGradient id="auraDiagonalGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00f5ff" />
+      <stop offset="25%" stop-color="#0284c7" />
+      <stop offset="55%" stop-color="#6366f1" />
+      <stop offset="80%" stop-color="#a855f7" />
+      <stop offset="100%" stop-color="#f43f5e" />
+    </linearGradient>
+
+    <!-- Right Pillar Magenta/Purple Gradient -->
+    <linearGradient id="auraRightGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fb7185" />
+      <stop offset="40%" stop-color="#ec4899" />
+      <stop offset="85%" stop-color="#9333ea" />
+      <stop offset="100%" stop-color="#6366f1" />
+    </linearGradient>
+
+    <!-- 3D Specular Highlight Gradients -->
+    <linearGradient id="auraSpecLeft" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.8" />
+      <stop offset="50%" stop-color="#ffffff" stop-opacity="0.1" />
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0" />
+    </linearGradient>
+    <linearGradient id="auraSpecRight" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0" />
+      <stop offset="50%" stop-color="#ffffff" stop-opacity="0.1" />
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.8" />
+    </linearGradient>
+    <linearGradient id="auraSpecDiag" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.75" />
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0" />
+    </linearGradient>
+
+    <!-- Ambient Glow Filter -->
+    <filter id="auraAmbientGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="6" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Ambient Backdrop Glows -->
+  <g opacity="0.5" filter="url(#auraAmbientGlow)">
+    <circle cx="25" cy="45" r="16" fill="#00f5ff" />
+    <circle cx="75" cy="55" r="16" fill="#ec4899" />
+  </g>
+
+  <!-- Left Vertical Tube -->
+  <g>
+    <rect x="16" y="14" width="18" height="72" rx="9" fill="url(#auraLeftGrad)" />
+    <!-- 3D Cylinder highlight -->
+    <rect x="18" y="17" width="4.5" height="66" rx="2.25" fill="url(#auraSpecLeft)" />
+  </g>
+
+  <!-- Right Vertical Tube -->
+  <g>
+    <rect x="66" y="14" width="18" height="72" rx="9" fill="url(#auraRightGrad)" />
+    <!-- 3D Cylinder highlight -->
+    <rect x="77.5" y="17" width="4.5" height="66" rx="2.25" fill="url(#auraSpecRight)" />
+  </g>
+
+  <!-- Diagonal Connecting Tube (Overlapping 3D Bar with Shadow) -->
+  <g>
+    <!-- Soft shadow cast under diagonal -->
+    <line x1="25" y1="23" x2="75" y2="77" stroke="#030712" stroke-width="21" stroke-linecap="round" opacity="0.4" />
+    <!-- Main Diagonal Tube -->
+    <line x1="25" y1="23" x2="75" y2="77" stroke="url(#auraDiagonalGrad)" stroke-width="17" stroke-linecap="round" />
+    <!-- Diagonal Specular Ridge -->
+    <line x1="27" y1="22" x2="74" y2="73" stroke="url(#auraSpecDiag)" stroke-width="3.5" stroke-linecap="round" opacity="0.8" />
+  </g>
+</svg>

@@ -1,8 +1,8 @@
 {
   "id": "/",
-  "name": "معرض أعمال Yassen PS | مركز الأدوات الرقمية",
+  "name": "Tools Hub",
   "short_name": "Tools Hub",
-  "description": "منصة رقمية متكاملة تجمع بين سابقة أعمال المطور Yassen PS وأكبر باقة أدوات رقمية مجانية 2026",
+  "description": "أدوات رقمية وتطبيقات مجانية وسريعة لتسهيل مهامك اليومية.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
