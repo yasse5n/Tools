@@ -123,32 +123,112 @@
             visibility: hidden;
         }
 
-        .loader {
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            background: conic-gradient(from 0deg, transparent, #a78bfa, #ec4899, transparent);
-            animation: spin 1s linear infinite;
-            position: relative;
-        }
-
-        .loader::before {
-            content: '';
-            position: absolute;
-            inset: 4px;
-            background: #030712;
-            border-radius: 50%;
-        }
-
-        .loader::after {
-            content: '⚡';
-            position: absolute;
-            inset: 0;
+        /* ========== Opening Intro Loader: Glitch Style (From Uiverse.io by andrew-demchenk0) ========== */
+        .glitch-loader-box {
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            font-size: 1.8rem;
-            animation: pulse 1s ease-in-out infinite;
+            gap: 1.25rem;
+            position: relative;
+            user-select: none;
+        }
+
+        .glitch {
+            position: relative;
+            font-size: clamp(34px, 7vw, 56px);
+            font-weight: 900;
+            line-height: 1.2;
+            color: #fff;
+            letter-spacing: 8px;
+            z-index: 1;
+            font-family: 'Cairo', system-ui, sans-serif;
+            text-transform: uppercase;
+            animation: shift 1s ease-in-out infinite alternate;
+        }
+
+        .glitch:before,
+        .glitch:after {
+            display: block;
+            content: attr(data-glitch);
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0.8;
+        }
+
+        .glitch:before {
+            animation: glitch 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite;
+            color: #8b00ff;
+            z-index: -1;
+        }
+
+        .glitch:after {
+            animation: glitch 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) reverse both infinite;
+            color: #00e571;
+            z-index: -2;
+        }
+
+        @keyframes glitch {
+            0% {
+                transform: translate(0);
+            }
+            20% {
+                transform: translate(-3px, 3px);
+            }
+            40% {
+                transform: translate(-3px, -3px);
+            }
+            60% {
+                transform: translate(3px, 3px);
+            }
+            80% {
+                transform: translate(3px, -3px);
+            }
+            to {
+                transform: translate(0);
+            }
+        }
+
+        @keyframes shift {
+            0%, 40%, 44%, 58%, 61%, 65%, 69%, 73%, 100% {
+                transform: skewX(0deg);
+            }
+            41% {
+                transform: skewX(10deg);
+            }
+            42% {
+                transform: skewX(-10deg);
+            }
+            59% {
+                transform: skewX(40deg) skewY(10deg);
+            }
+            60% {
+                transform: skewX(-40deg) skewY(-10deg);
+            }
+            63% {
+                transform: skewX(10deg) skewY(-5deg);
+            }
+            70% {
+                transform: skewX(-50deg) skewY(-20deg);
+            }
+            71% {
+                transform: skewX(10deg) skewY(-10deg);
+            }
+        }
+
+        .glitch-subbar {
+            width: 140px;
+            height: 3px;
+            background: linear-gradient(90deg, #8b00ff, #00e571);
+            border-radius: 9999px;
+            box-shadow: 0 0 18px rgba(0, 229, 113, 0.8), 0 0 10px rgba(139, 0, 255, 0.6);
+            animation: glitchPulse 1.2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glitchPulse {
+            0% { width: 50px; opacity: 0.6; }
+            100% { width: 170px; opacity: 1; }
         }
 
         /* ========== Hardware-Accelerated Zero-Lag Cyber Cursor (أداء فائق وسرعة 120 إطار/ثانية) ========== */
@@ -843,6 +923,163 @@
             animation: marquee 30s linear infinite;
         }
 
+        /* ========== Professional Breaking News Ticker (شريط أخبار الأدوات الجديدة) ========== */
+        .news-ticker-wrapper {
+            position: relative;
+            background: rgba(15, 23, 42, 0.82);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid rgba(167, 139, 250, 0.28);
+            border-radius: 1.25rem;
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.6), 0 0 25px rgba(139, 92, 246, 0.12);
+            display: flex;
+            align-items: stretch;
+            overflow: hidden;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .news-ticker-wrapper:hover {
+            border-color: rgba(167, 139, 250, 0.55);
+            box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.7), 0 0 35px rgba(139, 92, 246, 0.22);
+        }
+
+        .news-ticker-badge {
+            flex-shrink: 0;
+            background: linear-gradient(135deg, #7c3aed 0%, #db2777 50%, #f43f5e 100%);
+            color: #ffffff;
+            font-weight: 800;
+            font-size: 0.85rem;
+            padding: 0.75rem 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            z-index: 5;
+            user-select: none;
+            box-shadow: 4px 0 18px rgba(0, 0, 0, 0.35);
+            white-space: nowrap;
+        }
+
+        .news-ticker-badge .pulse-point {
+            width: 8px;
+            height: 8px;
+            background: #ffffff;
+            border-radius: 50%;
+            position: relative;
+            display: inline-block;
+            box-shadow: 0 0 10px #ffffff;
+        }
+
+        .news-ticker-badge .pulse-point::before {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border-radius: 50%;
+            background: #ffffff;
+            opacity: 0.7;
+            animation: ping 1.4s cubic-bezier(0, 0, 0.2, 1) infinite;
+        }
+
+        .news-ticker-viewport {
+            flex: 1;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            align-items: center;
+            mask-image: linear-gradient(90deg, transparent 0%, black 2%, black 98%, transparent 100%);
+            -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 2%, black 98%, transparent 100%);
+        }
+
+        .news-ticker-track {
+            display: flex;
+            align-items: center;
+            width: max-content;
+            white-space: nowrap;
+            animation: tickerScroll 55s linear infinite;
+            will-change: transform;
+            padding: 0.4rem 0;
+        }
+
+        .news-ticker-wrapper:hover .news-ticker-track,
+        .news-ticker-track.is-paused {
+            animation-play-state: paused !important;
+        }
+
+        @keyframes tickerScroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .news-ticker-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.65rem;
+            padding: 0.45rem 0.95rem;
+            margin: 0 0.35rem;
+            border-radius: 0.85rem;
+            background: rgba(255, 255, 255, 0.035);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            color: #e2e8f0;
+            text-decoration: none;
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            font-size: 0.825rem;
+            flex-shrink: 0;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .news-ticker-item:hover {
+            background: rgba(139, 92, 246, 0.18);
+            border-color: rgba(167, 139, 250, 0.5);
+            color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(139, 92, 246, 0.25);
+        }
+
+        .news-ticker-item .item-tag {
+            font-size: 0.68rem;
+            font-weight: 800;
+            padding: 0.15rem 0.5rem;
+            border-radius: 9999px;
+            white-space: nowrap;
+        }
+
+        .news-ticker-controls {
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+            padding: 0 0.75rem;
+            z-index: 5;
+            flex-shrink: 0;
+            background: rgba(15, 23, 42, 0.92);
+            border-right: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .ticker-ctrl-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 0.55rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: #94a3b8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .ticker-ctrl-btn:hover {
+            background: rgba(167, 139, 250, 0.25);
+            border-color: rgba(167, 139, 250, 0.5);
+            color: #ffffff;
+            transform: scale(1.06);
+        }
+
         /* ========== Typing Animation ========== */
         .typing-text::after {
             content: '|';
@@ -1328,10 +1565,16 @@
 
 <body class="text-gray-100 min-h-screen">
 
-    <!-- Loading Screen -->
+    <!-- Loading Screen (مقدمة فتح الموقع بنمط Glitch Cyber: From Uiverse.io by andrew-demchenk0) -->
     <div class="loading-screen" id="loadingScreen">
-        <div class="loader"></div>
-        <p class="mt-6 text-gray-400 text-sm">جاري تحميل الأدوات...</p>
+        <div class="glitch-loader-box">
+            <div data-glitch="TOOLS" class="glitch">TOOLS</div>
+            <div class="glitch-subbar"></div>
+            <div class="flex items-center gap-2 text-xs tracking-widest text-emerald-400 font-mono opacity-80 mt-1">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
+                <span>INITIALIZING TOOLS HUB...</span>
+            </div>
+        </div>
     </div>
 
     <!-- Reading Progress Bar -->
@@ -1438,11 +1681,11 @@
             <!-- Stats Section -->
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto mb-12">
                 <div class="stat-card glass-panel rounded-2xl p-4 md:p-6 text-center">
-                    <div class="text-3xl md:text-4xl font-black gradient-text mb-1 counter-glow" data-counter="8">0</div>
+                    <div class="text-3xl md:text-4xl font-black gradient-text mb-1 counter-glow" data-counter="7">0</div>
                     <div class="text-xs md:text-sm text-gray-400">تطبيقات ومنصات ويب</div>
                 </div>
                 <div class="stat-card glass-panel rounded-2xl p-4 md:p-6 text-center">
-                    <div class="text-3xl md:text-4xl font-black gradient-text mb-1 counter-glow" data-counter="26">0</div>
+                    <div class="text-3xl md:text-4xl font-black gradient-text mb-1 counter-glow" data-counter="23">0</div>
                     <div class="text-xs md:text-sm text-gray-400">أداة رقمية وتسويقية</div>
                 </div>
                 <div class="stat-card glass-panel rounded-2xl p-4 md:p-6 text-center">
@@ -1454,6 +1697,192 @@
                         AURA<span class="text-xs text-amber-400/80 mr-1">PRO</span>
                     </div>
                     <div class="text-xs md:text-sm text-gray-400">الراعي الرسمي الحصري</div>
+                </div>
+            </div>
+
+            <!-- Professional Breaking News Ticker (شريط أخبار الأدوات الجديدة بشكل احترافي) -->
+            <div class="max-w-5xl mx-auto mb-10 px-2">
+                <div class="news-ticker-wrapper" id="newsTickerWrapper" role="region" aria-label="شريط أخبار الأدوات الجديدة">
+                    <!-- Ticker Header Badge -->
+                    <div class="news-ticker-badge">
+                        <span class="pulse-point"></span>
+                        <i class="fa-solid fa-bolt-lightning text-amber-300"></i>
+                        <span>جديد الأدوات</span>
+                    </div>
+
+                    <!-- Ticker Viewport & Track -->
+                    <div class="news-ticker-viewport" id="newsTickerViewport">
+                        <div class="news-ticker-track" id="newsTickerTrack">
+                            <!-- Items Set 1 -->
+                            <a href="https://aura-studio-neon.vercel.app/" target="_blank" class="news-ticker-item">
+                                <span class="item-tag bg-amber-500/20 text-amber-300 border border-amber-400/40">👑 VIP SPONSOR</span>
+                                <i class="fa-solid fa-crown text-amber-400"></i>
+                                <span class="font-bold text-white">AURA Studio PRO:</span>
+                                <span class="text-gray-300">اصنع محتواك وجلسات تصوير منتجات 4K بالذكاء الاصطناعي</span>
+                                <i class="fa-solid fa-arrow-left text-xs text-purple-400 mr-1"></i>
+                            </a>
+
+                            <div onclick="toggleQuranRadioSide()" class="news-ticker-item" role="button" tabindex="0">
+                                <span class="item-tag bg-emerald-500/20 text-emerald-300 border border-emerald-400/30">📻 بث حي 24/7</span>
+                                <i class="fa-solid fa-radio text-emerald-400"></i>
+                                <span class="font-bold text-white">إذاعة القرآن الكريم:</span>
+                                <span class="text-gray-300">استمع لأعذب التلاوات لأشهر القراء دون توقف</span>
+                                <i class="fa-solid fa-play text-xs text-emerald-400 mr-1"></i>
+                            </div>
+
+                            <a href="https://tube-scope-pro.vercel.app/" target="_blank" class="news-ticker-item">
+                                <span class="item-tag bg-red-500/20 text-red-300 border border-red-400/30">🔥 الأكثر طلباً</span>
+                                <i class="fa-brands fa-youtube text-red-400"></i>
+                                <span class="font-bold text-white">TubeScope Pro:</span>
+                                <span class="text-gray-300">تحليل قنوات يوتيوب واستخراج الكلمات المفتاحية وSEO</span>
+                                <i class="fa-solid fa-arrow-left text-xs text-red-400 mr-1"></i>
+                            </a>
+
+                            <a href="https://t.me/vaurhbot" target="_blank" class="news-ticker-item">
+                                <span class="item-tag bg-cyan-500/20 text-cyan-300 border border-cyan-400/30">⚡ فائق السرعة</span>
+                                <i class="fa-brands fa-telegram text-cyan-400"></i>
+                                <span class="font-bold text-white">بوت التحميل الشامل:</span>
+                                <span class="text-gray-300">تحميل مباشر من جميع منصات الفيديو بدون علامة مائية</span>
+                                <i class="fa-solid fa-arrow-left text-xs text-cyan-400 mr-1"></i>
+                            </a>
+
+                            <div onclick="openTasbihModal()" class="news-ticker-item" role="button" tabindex="0">
+                                <span class="item-tag bg-teal-500/20 text-teal-300 border border-teal-400/30">📿 إسلاميات</span>
+                                <i class="fa-solid fa-hands-praying text-teal-400"></i>
+                                <span class="font-bold text-white">السبحة الإلكترونية الذكية:</span>
+                                <span class="text-gray-300">عداد تسبيح تفاعلي مع حفظ السجل واهتزاز haptic</span>
+                                <i class="fa-solid fa-hand-pointer text-xs text-teal-400 mr-1"></i>
+                            </div>
+
+                            <a href="https://tik-down-coral.vercel.app/" target="_blank" class="news-ticker-item">
+                                <span class="item-tag bg-pink-500/20 text-pink-300 border border-pink-400/30">✨ Full HD</span>
+                                <i class="fa-brands fa-tiktok text-pink-400"></i>
+                                <span class="font-bold text-white">TikTok Video Pro:</span>
+                                <span class="text-gray-300">تنزيل مقاطع وفيديوهات تيك توك بأعلى دقة بضغطة زر</span>
+                                <i class="fa-solid fa-arrow-left text-xs text-pink-400 mr-1"></i>
+                            </a>
+
+                            <a href="https://www.remove.bg/" target="_blank" class="news-ticker-item">
+                                <span class="item-tag bg-purple-500/20 text-purple-300 border border-purple-400/30">🤖 AI Vision</span>
+                                <i class="fa-solid fa-scissors text-purple-400"></i>
+                                <span class="font-bold text-white">عزل خلفيات الصور:</span>
+                                <span class="text-gray-300">تفريغ خلفيات المنتجات والصور فورياً بالذكاء الاصطناعي</span>
+                                <i class="fa-solid fa-arrow-left text-xs text-purple-400 mr-1"></i>
+                            </a>
+
+                            <div onclick="openMicroToolsModal()" class="news-ticker-item" role="button" tabindex="0">
+                                <span class="item-tag bg-blue-500/20 text-blue-300 border border-blue-400/30">🛠️ أدوات سريعة</span>
+                                <i class="fa-solid fa-qrcode text-blue-400"></i>
+                                <span class="font-bold text-white">استوديو الأكواد وQR:</span>
+                                <span class="text-gray-300">مولد باركود QR، عداد النصوص، وتدرجات CSS الحية</span>
+                                <i class="fa-solid fa-wand-magic-sparkles text-xs text-blue-400 mr-1"></i>
+                            </div>
+
+                            <a href="https://deddl.serv00.net/aiw/Cv-main/7/index.html" target="_blank" class="news-ticker-item">
+                                <span class="item-tag bg-orange-500/20 text-orange-300 border border-orange-400/30">💻 للمطورين</span>
+                                <i class="fa-solid fa-code text-orange-400"></i>
+                                <span class="font-bold text-white">محرر الأكواد المباشر:</span>
+                                <span class="text-gray-300">بيئة تفاعلية لتجربة وبرمجة HTML/CSS/JS في الوقت الفعلي</span>
+                                <i class="fa-solid fa-arrow-left text-xs text-orange-400 mr-1"></i>
+                            </a>
+
+                            <a href="https://fast.com/" target="_blank" class="news-ticker-item">
+                                <span class="item-tag bg-emerald-500/20 text-emerald-300 border border-emerald-400/30">⚡ فحص فوري</span>
+                                <i class="fa-solid fa-gauge-high text-emerald-400"></i>
+                                <span class="font-bold text-white">فحص سرعة الإنترنت:</span>
+                                <span class="text-gray-300">قياس سرعة التحميل والرفع وزمن الاستجابة بدقة عالية</span>
+                                <i class="fa-solid fa-arrow-left text-xs text-emerald-400 mr-1"></i>
+                            </a>
+
+                            <!-- Duplicate Set for Seamless Infinite Loop -->
+                            <a href="https://aura-studio-neon.vercel.app/" target="_blank" class="news-ticker-item">
+                                <span class="item-tag bg-amber-500/20 text-amber-300 border border-amber-400/40">👑 VIP SPONSOR</span>
+                                <i class="fa-solid fa-crown text-amber-400"></i>
+                                <span class="font-bold text-white">AURA Studio PRO:</span>
+                                <span class="text-gray-300">اصنع محتواك وجلسات تصوير منتجات 4K بالذكاء الاصطناعي</span>
+                                <i class="fa-solid fa-arrow-left text-xs text-purple-400 mr-1"></i>
+                            </a>
+
+                            <div onclick="toggleQuranRadioSide()" class="news-ticker-item" role="button" tabindex="0">
+                                <span class="item-tag bg-emerald-500/20 text-emerald-300 border border-emerald-400/30">📻 بث حي 24/7</span>
+                                <i class="fa-solid fa-radio text-emerald-400"></i>
+                                <span class="font-bold text-white">إذاعة القرآن الكريم:</span>
+                                <span class="text-gray-300">استمع لأعذب التلاوات لأشهر القراء دون توقف</span>
+                                <i class="fa-solid fa-play text-xs text-emerald-400 mr-1"></i>
+                            </div>
+
+                            <a href="https://tube-scope-pro.vercel.app/" target="_blank" class="news-ticker-item">
+                                <span class="item-tag bg-red-500/20 text-red-300 border border-red-400/30">🔥 الأكثر طلباً</span>
+                                <i class="fa-brands fa-youtube text-red-400"></i>
+                                <span class="font-bold text-white">TubeScope Pro:</span>
+                                <span class="text-gray-300">تحليل قنوات يوتيوب واستخراج الكلمات المفتاحية وSEO</span>
+                                <i class="fa-solid fa-arrow-left text-xs text-red-400 mr-1"></i>
+                            </a>
+
+                            <a href="https://t.me/vaurhbot" target="_blank" class="news-ticker-item">
+                                <span class="item-tag bg-cyan-500/20 text-cyan-300 border border-cyan-400/30">⚡ فائق السرعة</span>
+                                <i class="fa-brands fa-telegram text-cyan-400"></i>
+                                <span class="font-bold text-white">بوت التحميل الشامل:</span>
+                                <span class="text-gray-300">تحميل مباشر من جميع منصات الفيديو بدون علامة مائية</span>
+                                <i class="fa-solid fa-arrow-left text-xs text-cyan-400 mr-1"></i>
+                            </a>
+
+                            <div onclick="openTasbihModal()" class="news-ticker-item" role="button" tabindex="0">
+                                <span class="item-tag bg-teal-500/20 text-teal-300 border border-teal-400/30">📿 إسلاميات</span>
+                                <i class="fa-solid fa-hands-praying text-teal-400"></i>
+                                <span class="font-bold text-white">السبحة الإلكترونية الذكية:</span>
+                                <span class="text-gray-300">عداد تسبيح تفاعلي مع حفظ السجل واهتزاز haptic</span>
+                                <i class="fa-solid fa-hand-pointer text-xs text-teal-400 mr-1"></i>
+                            </div>
+
+                            <a href="https://tik-down-coral.vercel.app/" target="_blank" class="news-ticker-item">
+                                <span class="item-tag bg-pink-500/20 text-pink-300 border border-pink-400/30">✨ Full HD</span>
+                                <i class="fa-brands fa-tiktok text-pink-400"></i>
+                                <span class="font-bold text-white">TikTok Video Pro:</span>
+                                <span class="text-gray-300">تنزيل مقاطع وفيديوهات تيك توك بأعلى دقة بضغطة زر</span>
+                                <i class="fa-solid fa-arrow-left text-xs text-pink-400 mr-1"></i>
+                            </a>
+
+                            <a href="https://www.remove.bg/" target="_blank" class="news-ticker-item">
+                                <span class="item-tag bg-purple-500/20 text-purple-300 border border-purple-400/30">🤖 AI Vision</span>
+                                <i class="fa-solid fa-scissors text-purple-400"></i>
+                                <span class="font-bold text-white">عزل خلفيات الصور:</span>
+                                <span class="text-gray-300">تفريغ خلفيات المنتجات والصور فورياً بالذكاء الاصطناعي</span>
+                                <i class="fa-solid fa-arrow-left text-xs text-purple-400 mr-1"></i>
+                            </a>
+
+                            <div onclick="openMicroToolsModal()" class="news-ticker-item" role="button" tabindex="0">
+                                <span class="item-tag bg-blue-500/20 text-blue-300 border border-blue-400/30">🛠️ أدوات سريعة</span>
+                                <i class="fa-solid fa-qrcode text-blue-400"></i>
+                                <span class="font-bold text-white">استوديو الأكواد وQR:</span>
+                                <span class="text-gray-300">مولد باركود QR، عداد النصوص، وتدرجات CSS الحية</span>
+                                <i class="fa-solid fa-wand-magic-sparkles text-xs text-blue-400 mr-1"></i>
+                            </div>
+
+                            <a href="https://deddl.serv00.net/aiw/Cv-main/7/index.html" target="_blank" class="news-ticker-item">
+                                <span class="item-tag bg-orange-500/20 text-orange-300 border border-orange-400/30">💻 للمطورين</span>
+                                <i class="fa-solid fa-code text-orange-400"></i>
+                                <span class="font-bold text-white">محرر الأكواد المباشر:</span>
+                                <span class="text-gray-300">بيئة تفاعلية لتجربة وبرمجة HTML/CSS/JS في الوقت الفعلي</span>
+                                <i class="fa-solid fa-arrow-left text-xs text-orange-400 mr-1"></i>
+                            </a>
+
+                            <a href="https://fast.com/" target="_blank" class="news-ticker-item">
+                                <span class="item-tag bg-emerald-500/20 text-emerald-300 border border-emerald-400/30">⚡ فحص فوري</span>
+                                <i class="fa-solid fa-gauge-high text-emerald-400"></i>
+                                <span class="font-bold text-white">فحص سرعة الإنترنت:</span>
+                                <span class="text-gray-300">قياس سرعة التحميل والرفع وزمن الاستجابة بدقة عالية</span>
+                                <i class="fa-solid fa-arrow-left text-xs text-emerald-400 mr-1"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Ticker Control Actions -->
+                    <div class="news-ticker-controls">
+                        <button type="button" onclick="toggleTickerPause()" class="ticker-ctrl-btn" id="tickerPauseBtn" title="إيقاف مؤقت / تشغيل الشريط" aria-label="إيقاف مؤقت أو تشغيل شريط الأخبار">
+                            <i class="fa-solid fa-pause text-xs" id="tickerPauseIcon"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
 
@@ -2126,43 +2555,7 @@
                     </div>
                 </div>
 
-                <!-- 4. Device Cleaner Pro -->
-                <div class="portfolio-project-card p-6 md:p-8 flex flex-col justify-between group" data-pcat="tools" data-tags="device cleaner speed tools portfolio">
-                    <div>
-                        <div class="flex items-center justify-between mb-4">
-                            <span class="px-3 py-1 rounded-full text-xs font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-400/30 flex items-center gap-1.5">
-                                <i class="fa-solid fa-gauge-high text-cyan-400"></i>
-                                <span>تسريع وتفاؤل</span>
-                            </span>
-                            <span class="text-xs text-gray-400 font-mono">2026</span>
-                        </div>
-                        <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-cyan-600 to-blue-700 flex items-center justify-center text-white text-3xl shadow-xl shadow-cyan-500/20 mb-5 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500">
-                            <i class="fa-solid fa-broom"></i>
-                        </div>
-                        <h3 class="text-2xl font-black text-white mb-2 group-hover:text-cyan-400 transition-colors">Device Cleaner Tool</h3>
-                        <p class="text-gray-300 text-sm leading-relaxed mb-4">
-                            أداة تفاعلية لتنظيف الملفات المؤقتة والذاكرة المؤقتة وتسريع أداء تصفح النظام والأجهزة بسهولة.
-                        </p>
-                        <div class="flex flex-wrap items-center gap-1.5 mb-6 text-xs text-cyan-300">
-                            <span class="px-2 py-0.5 rounded-md bg-white/5 border border-white/10">Performance</span>
-                            <span class="px-2 py-0.5 rounded-md bg-white/5 border border-white/10">Storage Audit</span>
-                            <span class="px-2 py-0.5 rounded-md bg-white/5 border border-white/10">Clean UI</span>
-                        </div>
-                    </div>
-                    <div class="flex items-center gap-2 pt-4 border-t border-white/10">
-                        <a href="https://device-cleaner-tool.vercel.app/" target="_blank"
-                            class="flex-1 py-2.5 px-4 rounded-xl bg-gradient-to-r from-cyan-600 to-blue-600 text-white font-bold text-xs flex items-center justify-center gap-2 hover:scale-105 transition-all">
-                            <span>زيارة المشروع</span>
-                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                        </a>
-                        <button onclick="openPreviewModal('https://device-cleaner-tool.vercel.app/', 'Device Cleaner Pro')"
-                            class="p-2.5 rounded-xl glass-panel text-gray-300 hover:text-white hover:border-cyan-400/40 transition-all text-xs" title="معاينة سريعة">
-                            <i class="fa-solid fa-eye text-cyan-400"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- 5. Facebook Direct Links Hub -->
+                <!-- 4. Facebook Direct Links Hub -->
                 <div class="portfolio-project-card p-6 md:p-8 flex flex-col justify-between group" data-pcat="tools" data-tags="facebook links direct tools portfolio">
                     <div>
                         <div class="flex items-center justify-between mb-4">
@@ -2325,29 +2718,15 @@
                         </div>
                     </div>
                     <div class="hidden md:flex items-center gap-2 px-4 py-2 rounded-full glass-panel">
-                        <span class="text-sm text-gray-400">5 أدوات</span>
+                        <span class="text-sm text-gray-400">أداتان</span>
                     </div>
                 </div>
 
                 <div class="bento-grid">
 
-                    <!-- Twitter/X Downloader (NEW) - رابط حقيقي -->
-                    <a href="https://twitsave.com/" target="_blank"
-                        class="tool-card glass-card rounded-3xl p-6 flex flex-col items-center text-center group relative overflow-hidden bento-item" data-tags="تويتر تحميل فيديو twitter x">
-                        <span class="tool-badge new">✨ جديد</span>
-                        <div class="absolute top-0 left-0 p-4 opacity-0 group-hover:opacity-100 transition-opacity">
-                            <i class="fa-solid fa-arrow-up-right-from-square text-lg text-gray-400"></i>
-                        </div>
-                        <div class="icon-container w-16 h-16 mb-5 rounded-2xl bg-gradient-to-br from-gray-800 to-black flex items-center justify-center shadow-xl group-hover:scale-110 group-hover:rotate-3 transition-all duration-500">
-                            <i class="fa-brands fa-x-twitter text-3xl text-white"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-white mb-2 group-hover:text-gray-300 transition-colors">تحميل من X/Twitter</h3>
-                        <p class="text-gray-400 text-sm leading-relaxed">تحميل الفيديوهات والصور من تويتر/X بسهولة.</p>
-                    </a>
-
                     <!-- Universal Telegram Downloader Bot (All-in-one) -->
                     <a href="https://t.me/vaurhbot" target="_blank"
-                        class="tool-card glass-card rounded-3xl p-6 flex flex-col items-center text-center group relative overflow-hidden bento-item border border-cyan-400/30 hover:border-cyan-400" data-tags="تليجرام بوت تحميل شامل جميع المواقع telegram bot all video downloader vaurhbot">
+                        class="tool-card glass-card rounded-3xl p-6 md:p-8 flex flex-col items-center text-center group relative overflow-hidden bento-item featured border border-cyan-400/30 hover:border-cyan-400" data-tags="تليجرام بوت تحميل شامل جميع المواقع telegram bot all video downloader vaurhbot">
                         <span class="tool-badge hot">⚡ شامل لجميع المواقع</span>
                         <div class="absolute top-0 left-0 p-4 opacity-0 group-hover:opacity-100 transition-opacity">
                             <i class="fa-solid fa-arrow-up-right-from-square text-lg text-cyan-400"></i>
@@ -2355,19 +2734,19 @@
                         <div class="icon-container w-16 h-16 mb-5 rounded-2xl bg-gradient-to-br from-blue-500 via-cyan-500 to-indigo-600 flex items-center justify-center shadow-xl group-hover:scale-110 group-hover:rotate-3 transition-all duration-500">
                             <i class="fa-brands fa-telegram text-3xl text-white"></i>
                         </div>
-                        <h3 class="text-xl font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors">بوت التحميل الشامل (تليجرام)</h3>
+                        <h3 class="text-xl md:text-2xl font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors">بوت التحميل الشامل (تليجرام)</h3>
                         <p class="text-gray-400 text-sm leading-relaxed">بوت متكامل وفائق السرعة لتحميل الفيديوهات والمقاطع والصوتيات من جميع المواقع والمنصات (تيك توك، يوتيوب، انستجرام، فيسبوك، X، وأكثر) بأعلى دقة وبدون علامة مائية.</p>
-                        <div class="flex flex-wrap items-center gap-1.5 mt-3 justify-center text-[10px] text-cyan-300">
-                            <span class="px-2 py-0.5 rounded-md bg-white/5 border border-white/10">TikTok</span>
-                            <span class="px-2 py-0.5 rounded-md bg-white/5 border border-white/10">YouTube</span>
-                            <span class="px-2 py-0.5 rounded-md bg-white/5 border border-white/10">Instagram</span>
-                            <span class="px-2 py-0.5 rounded-md bg-white/5 border border-white/10">Facebook & X</span>
+                        <div class="flex flex-wrap items-center gap-1.5 mt-4 justify-center text-xs text-cyan-300">
+                            <span class="px-2.5 py-1 rounded-md bg-white/5 border border-white/10">TikTok</span>
+                            <span class="px-2.5 py-1 rounded-md bg-white/5 border border-white/10">YouTube</span>
+                            <span class="px-2.5 py-1 rounded-md bg-white/5 border border-white/10">Instagram</span>
+                            <span class="px-2.5 py-1 rounded-md bg-white/5 border border-white/10">Facebook & X</span>
                         </div>
                     </a>
 
                     <!-- TikTok Analytics -->
                     <a href="https://deddl.serv00.net/aiw/Cv-main/8/index.php" target="_blank"
-                        class="tool-card glass-card rounded-3xl p-6 flex flex-col items-center text-center group relative overflow-hidden bento-item" data-tags="تيك توك تحليل احصائيات analytics">
+                        class="tool-card glass-card rounded-3xl p-6 md:p-8 flex flex-col items-center text-center group relative overflow-hidden bento-item featured" data-tags="تيك توك تحليل احصائيات analytics">
                         <span class="tool-badge">تحليلات</span>
                         <div class="absolute top-0 left-0 p-4 opacity-0 group-hover:opacity-100 transition-opacity">
                             <i class="fa-solid fa-arrow-up-right-from-square text-lg text-gray-400"></i>
@@ -2375,43 +2754,12 @@
                         <div class="icon-container w-16 h-16 mb-5 rounded-2xl bg-gradient-to-br from-pink-500 to-rose-600 flex items-center justify-center shadow-xl group-hover:scale-110 group-hover:rotate-3 transition-all duration-500">
                             <i class="fa-solid fa-chart-line text-3xl text-white"></i>
                         </div>
-                        <h3 class="text-xl font-bold text-white mb-2 group-hover:text-pink-400 transition-colors">تحليل حساب تيك توك</h3>
-                        <p class="text-gray-400 text-sm leading-relaxed">عرض إحصائيات الحسابات والفيديوهات العلنية بشكل مفصل.</p>
-                    </a>
-
-                    <!-- SaveFrom All Video Downloader (Wide) -->
-                    <a href="https://en.savefrom.net/" target="_blank"
-                        class="tool-card glass-card rounded-3xl p-6 md:p-8 flex flex-col md:flex-row items-center gap-6 text-center md:text-right group relative overflow-hidden bento-item wide" data-tags="تحميل فيديو savefrom all video download">
-                        <span class="tool-badge">شامل وسريع</span>
-                        <div class="absolute top-0 left-0 p-4 opacity-0 group-hover:opacity-100 transition-opacity">
-                            <i class="fa-solid fa-arrow-up-right-from-square text-lg text-gray-400"></i>
+                        <h3 class="text-xl md:text-2xl font-bold text-white mb-2 group-hover:text-pink-400 transition-colors">تحليل حساب تيك توك</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">عرض إحصائيات الحسابات والفيديوهات العلنية بشكل مفصل ودقيق.</p>
+                        <div class="flex flex-wrap items-center gap-1.5 mt-4 justify-center text-xs text-pink-300">
+                            <span class="px-2.5 py-1 rounded-md bg-white/5 border border-white/10">Engagement</span>
+                            <span class="px-2.5 py-1 rounded-md bg-white/5 border border-white/10">Analytics</span>
                         </div>
-                        <div class="icon-container w-20 h-20 rounded-3xl bg-gradient-to-br from-emerald-600 to-green-700 flex items-center justify-center shadow-2xl group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 flex-shrink-0">
-                            <i class="fa-solid fa-circle-down text-4xl text-white"></i>
-                        </div>
-                        <div class="flex-1">
-                            <h3 class="text-2xl font-bold text-white mb-2 group-hover:text-emerald-400 transition-colors">SaveFrom Universal Video</h3>
-                            <p class="text-gray-400 leading-relaxed">أداة شاملة لتحميل الفيديوهات من يوتيوب، فيسبوك، انستجرام، وتويتر بأعلى جودة وصيغ متعددة.</p>
-                            <div class="flex flex-wrap items-center gap-3 mt-4 justify-center md:justify-start text-xs text-emerald-400">
-                                <span class="flex items-center gap-1"><i class="fa-solid fa-check"></i> متعدد المنصات</span>
-                                <span class="flex items-center gap-1"><i class="fa-solid fa-film"></i> 1080p & 4K</span>
-                                <span class="flex items-center gap-1"><i class="fa-solid fa-music"></i> تحويل MP3</span>
-                            </div>
-                        </div>
-                    </a>
-
-                    <!-- Pinterest Media Downloader -->
-                    <a href="https://pinterestvideodownloader.com/" target="_blank"
-                        class="tool-card glass-card rounded-3xl p-6 flex flex-col items-center text-center group relative overflow-hidden bento-item" data-tags="بينترست تحميل صور فيديو pinterest download">
-                        <span class="tool-badge">ميديا</span>
-                        <div class="absolute top-0 left-0 p-4 opacity-0 group-hover:opacity-100 transition-opacity">
-                            <i class="fa-solid fa-arrow-up-right-from-square text-lg text-gray-400"></i>
-                        </div>
-                        <div class="icon-container w-16 h-16 mb-5 rounded-2xl bg-gradient-to-br from-red-600 to-rose-700 flex items-center justify-center shadow-xl group-hover:scale-110 group-hover:rotate-3 transition-all duration-500">
-                            <i class="fa-brands fa-pinterest text-3xl text-white"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-white mb-2 group-hover:text-red-400 transition-colors">تحميل بينترست</h3>
-                        <p class="text-gray-400 text-sm leading-relaxed">تحميل الصور بجودة Ultra HD وفيديوهات Pinterest بنقرة زر.</p>
                     </a>
                 </div>
             </section>
@@ -2937,48 +3285,6 @@
             </section>
         </main>
 
-        <!-- Features Section -->
-        <section class="mt-20 reveal">
-            <div class="text-center mb-12">
-                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-panel mb-4">
-                    <i class="fa-solid fa-wand-magic-sparkles text-yellow-400"></i>
-                    <span class="text-sm text-gray-300">لماذا نحن؟</span>
-                </div>
-                <h2 class="text-3xl md:text-5xl font-bold text-white mb-3">لماذا <span class="gradient-text">Tools Hub</span>؟</h2>
-                <p class="text-gray-400 text-lg">مميزات تجعل تجربتك أفضل</p>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="glass-panel rounded-3xl p-8 text-center hover:scale-105 transition-transform duration-300 spotlight">
-                    <div class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center">
-                        <i class="fa-solid fa-bolt text-2xl text-white"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-white mb-2">سرعة فائقة</h3>
-                    <p class="text-gray-400 text-sm">جميع الأدوات تعمل بسرعة عالية بدون أي تأخير</p>
-                </div>
-                <div class="glass-panel rounded-3xl p-8 text-center hover:scale-105 transition-transform duration-300 spotlight">
-                    <div class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center">
-                        <i class="fa-solid fa-shield-halved text-2xl text-white"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-white mb-2">آمن وموثوق</h3>
-                    <p class="text-gray-400 text-sm">حماية كاملة لبياناتك وخصوصيتك مضمونة</p>
-                </div>
-                <div class="glass-panel rounded-3xl p-8 text-center hover:scale-105 transition-transform duration-300 spotlight">
-                    <div class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-500 flex items-center justify-center">
-                        <i class="fa-solid fa-gift text-2xl text-white"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-white mb-2">مجاني بالكامل</h3>
-                    <p class="text-gray-400 text-sm">جميع الأدوات متاحة مجاناً بدون أي رسوم مخفية</p>
-                </div>
-                <div class="glass-panel rounded-3xl p-8 text-center hover:scale-105 transition-transform duration-300 spotlight">
-                    <div class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center">
-                        <i class="fa-solid fa-robot text-2xl text-white"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-white mb-2">مدعوم بـ AI</h3>
-                    <p class="text-gray-400 text-sm">أدوات ذكية مدعومة بأحدث تقنيات الذكاء الاصطناعي</p>
-                </div>
-            </div>
-        </section>
-
         <!-- ========== Developer Contact & Profile Section (للتواصل مع المطور) ========== -->
         <section id="developer" class="mt-24 mb-16 reveal">
             <div class="neon-sponsor-card">
@@ -3120,7 +3426,7 @@
                         هل تحتاج أداة أو خدمة برمجية جديدة؟ 💡
                     </h2>
                     <p class="text-gray-300 text-sm md:text-base leading-relaxed mb-8 max-w-2xl mx-auto">
-                        يسعدنا دائماً سماع أفكاركم ومشاريعكم! اقترح أي أداة أو خدمة رقمية تحتاجها، وسيقوم المطور <strong class="text-purple-300">Yassen PS</strong> بدراستها وبرمجتها وإضافتها للموقع مجاناً في التحديث القادم.
+                        يسعدنا دائماً سماع أفكاركم ومشاريعكم، اقترح أي أداة أو خدمة رقمية تحتاجها، وسيقوم المطور <strong class="text-purple-300">Yassen PS</strong> بدراستها وبرمجتها وإضافتها للموقع مجاناً في التحديث القادم.
                     </p>
 
                     <!-- Tool Request Form -->
@@ -3171,7 +3477,7 @@
                     <!-- Success State (Dynamic) -->
                     <div id="toolRequestSuccess" class="hidden mt-6 p-6 rounded-2xl bg-emerald-500/10 border border-emerald-400/30 text-emerald-300 text-center animate-fade-up">
                         <i class="fa-solid fa-circle-check text-3xl mb-2 text-emerald-400"></i>
-                        <h4 class="font-bold text-lg text-white mb-1">تم إرسال اقتراحك بنجاح! 🎉</h4>
+                        <h4 class="font-bold text-lg text-white mb-1">تم إرسال اقتراحك بنجاح 🎉</h4>
                         <p class="text-sm text-gray-300 mb-3">شكراً لمشاركتك القيّمة. سيقوم المطور بمراجعة الفكرة وبدء برمجتها قريباً.</p>
                         <a id="toolReqTelegramDirectLink" href="https://t.me/XS_YT" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-cyan-500/20 border border-cyan-400/30 text-cyan-300 hover:bg-cyan-500/30 text-xs font-bold transition-all">
                             <i class="fa-brands fa-telegram"></i>
@@ -3199,27 +3505,27 @@
                     
                     <!-- Emoji Rating Selector -->
                     <div class="flex items-center justify-center gap-3 sm:gap-6 mb-6">
-                        <button onclick="submitRating(1, '😡', 'نعتذر عن ذلك! سنعمل فوراً على تحسين التجربة وتطوير الأدوات 💪')" 
+                        <button onclick="submitRating(1, '😡', 'نعتذر عن ذلك، سنعمل فوراً على تحسين التجربة وتطوير الأدوات 💪')" 
                             class="emoji-rate-btn group flex flex-col items-center gap-2 p-3 sm:p-4 rounded-2xl bg-white/[0.03] hover:bg-red-500/15 border border-white/5 hover:border-red-500/40 transition-all duration-300 hover:scale-110 active:scale-95" data-rating="1" title="يحتاج تحسين">
                             <span class="text-3xl sm:text-4xl transition-transform group-hover:rotate-12 group-hover:scale-110">😡</span>
                             <span class="text-[11px] text-gray-400 group-hover:text-red-400 font-semibold">يحتاج تحسين</span>
                         </button>
-                        <button onclick="submitRating(2, '😐', 'شكراً لملاحظتك! سنقوم بإضافة مزيد من التحسينات والميزات قريباً ✨')" 
+                        <button onclick="submitRating(2, '😐', 'شكراً لملاحظتك، سنقوم بإضافة مزيد من التحسينات والميزات قريباً ✨')" 
                             class="emoji-rate-btn group flex flex-col items-center gap-2 p-3 sm:p-4 rounded-2xl bg-white/[0.03] hover:bg-yellow-500/15 border border-white/5 hover:border-yellow-500/40 transition-all duration-300 hover:scale-110 active:scale-95" data-rating="2" title="مقبول">
                             <span class="text-3xl sm:text-4xl transition-transform group-hover:rotate-12 group-hover:scale-110">😐</span>
                             <span class="text-[11px] text-gray-400 group-hover:text-yellow-400 font-semibold">مقبول</span>
                         </button>
-                        <button onclick="submitRating(3, '🙂', 'شكراً لك! نسعى دائماً لتقديم أدوات أسرع وأفضل 🌟')" 
+                        <button onclick="submitRating(3, '🙂', 'شكراً لك، نسعى دائماً لتقديم أدوات أسرع وأفضل 🌟')" 
                             class="emoji-rate-btn group flex flex-col items-center gap-2 p-3 sm:p-4 rounded-2xl bg-white/[0.03] hover:bg-cyan-500/15 border border-white/5 hover:border-cyan-500/40 transition-all duration-300 hover:scale-110 active:scale-95" data-rating="3" title="جيد جداً">
                             <span class="text-3xl sm:text-4xl transition-transform group-hover:rotate-12 group-hover:scale-110">🙂</span>
                             <span class="text-[11px] text-gray-400 group-hover:text-cyan-400 font-semibold">جيد جداً</span>
                         </button>
-                        <button onclick="submitRating(4, '😍', 'سعداء جداً بإعجابك بالموقع! شكراً لدعمك المستمر ❤️')" 
+                        <button onclick="submitRating(4, '😍', 'سعداء جداً بإعجابك بالموقع، شكراً لدعمك المستمر ❤️')" 
                             class="emoji-rate-btn group flex flex-col items-center gap-2 p-3 sm:p-4 rounded-2xl bg-white/[0.03] hover:bg-pink-500/15 border border-white/5 hover:border-pink-500/40 transition-all duration-300 hover:scale-110 active:scale-95" data-rating="4" title="ممتاز ورائع">
                             <span class="text-3xl sm:text-4xl transition-transform group-hover:rotate-12 group-hover:scale-110">😍</span>
                             <span class="text-[11px] text-gray-400 group-hover:text-pink-400 font-semibold">ممتاز</span>
                         </button>
-                        <button onclick="submitRating(5, '🚀', 'أسطوري! فخورون بثقتكم ونسعى دائماً للبقاء في القمة 🔥')" 
+                        <button onclick="submitRating(5, '🚀', 'أسطوري، فخورون بثقتكم ونسعى دائماً للبقاء في القمة 🔥')" 
                             class="emoji-rate-btn group flex flex-col items-center gap-2 p-3 sm:p-4 rounded-2xl bg-white/[0.03] hover:bg-amber-500/15 border border-white/5 hover:border-amber-500/40 transition-all duration-300 hover:scale-110 active:scale-95" data-rating="5" title="أسطوري VIP">
                             <span class="text-3xl sm:text-4xl transition-transform group-hover:rotate-12 group-hover:scale-110">🚀</span>
                             <span class="text-[11px] text-gray-400 group-hover:text-amber-300 font-bold">أسطوري VIP</span>
@@ -3442,7 +3748,7 @@
             <!-- Dynamic QR Code Container -->
             <div class="pt-4 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
                 <div class="flex items-center gap-3">
-                    <img id="shareQrCodeImg" src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https%3A%2F%2Ftools-gold-mu.vercel.app" alt="QR Code" class="w-14 h-14 rounded-xl bg-white p-1 shadow-md" />
+                    <img id="shareQrCodeImg" src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https%3A%2F%2Ftools-hub.vercel.app" alt="QR Code" class="w-14 h-14 rounded-xl bg-white p-1 shadow-md" />
                     <div class="text-right">
                         <div class="text-xs font-bold text-white">امسح الكود بكاميرا هاتفك</div>
                         <div class="text-[11px] text-gray-400">لفتح وتثبيت الموقع مباشرة على الهاتف</div>
@@ -3662,7 +3968,7 @@
                 </div>
                 <div class="flex items-center gap-3">
                     <span class="w-6 h-6 rounded-full bg-purple-500/20 text-purple-300 flex items-center justify-center font-bold flex-shrink-0">3</span>
-                    <span>اضغط <strong class="text-emerald-400">إضافة (Add)</strong> وسيظهر التطبيق بأيقونته فوراً!</span>
+                    <span>اضغط <strong class="text-emerald-400">إضافة (Add)</strong> وسيظهر التطبيق بأيقونته فوراً</span>
                 </div>
             </div>
             <button onclick="closeIosInstallModal()" class="mt-6 w-full py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-bold transition-all">
@@ -3700,16 +4006,35 @@
     <!-- Toast Notification -->
     <div class="toast" id="toast">
         <i class="fa-solid fa-circle-check text-green-400 text-xl"></i>
-        <span id="toastMessage">تم النسخ بنجاح!</span>
+        <span id="toastMessage">تم النسخ بنجاح</span>
     </div>
 
     <script>
         // ============ Loading Screen ============
         window.addEventListener('load', () => {
             setTimeout(() => {
-                document.getElementById('loadingScreen').classList.add('hidden');
+                document.getElementById('loadingScreen')?.classList.add('hidden');
             }, 1200);
         });
+
+        // ============ Breaking News Ticker Controller ============
+        let tickerIsPaused = false;
+        function toggleTickerPause() {
+            const track = document.getElementById('newsTickerTrack');
+            const icon = document.getElementById('tickerPauseIcon');
+            tickerIsPaused = !tickerIsPaused;
+            if (track) {
+                if (tickerIsPaused) {
+                    track.classList.add('is-paused');
+                    if (icon) icon.className = 'fa-solid fa-play text-xs';
+                    showToast('تم إيقاف حركة شريط الأخبار مؤقتاً ⏸️', 'fa-pause', 'text-amber-400');
+                } else {
+                    track.classList.remove('is-paused');
+                    if (icon) icon.className = 'fa-solid fa-pause text-xs';
+                    showToast('تم استئناف حركة شريط الأخبار ▶️', 'fa-play', 'text-emerald-400');
+                }
+            }
+        }
 
 
         // ============ Ultra-Fast Throttled Scroll Listener (Zero Lag) ============
@@ -3929,7 +4254,7 @@
             const url = 'https://aura-studio-neon.vercel.app/';
             if (navigator.clipboard) {
                 navigator.clipboard.writeText(url).then(() => {
-                    showToast('تم نسخ رابط الراعي الرسمي AURA Studio PRO! 🌟', 'fa-copy', 'text-amber-400');
+                    showToast('تم نسخ رابط الراعي الرسمي AURA Studio PRO 🌟', 'fa-copy', 'text-amber-400');
                 });
             } else {
                 showToast(url, 'fa-link', 'text-amber-400');
@@ -3952,7 +4277,7 @@
                     btn.style.opacity = '0.45';
                 }
             });
-            showToast(`تم تسجيل تقييمك (${emoji}) بنجاح! شكراً لك ✨`, 'fa-star', 'text-amber-400');
+            showToast(`تم تسجيل تقييمك (${emoji}) بنجاح، شكراً لك ✨`, 'fa-star', 'text-amber-400');
         }
 
         // Restore previous rating on load
@@ -3964,7 +4289,7 @@
                     btn.classList.add('bg-white/20', 'border-amber-400', 'scale-110');
                     const feedback = document.getElementById('ratingFeedback');
                     if (feedback) {
-                        feedback.innerHTML = `<span class="text-xs text-gray-400">لقد قمت بتقييم الموقع مسبقاً بـ ⭐ شكراً لمشاركتك!</span>`;
+                        feedback.innerHTML = `<span class="text-xs text-gray-400">لقد قمت بتقييم الموقع مسبقاً بـ ⭐ شكراً لمشاركتك</span>`;
                     }
                 }
             }
@@ -4110,7 +4435,7 @@
                         section.style.display = hasFav ? '' : 'none';
                     });
                     if (favs.length === 0) {
-                        showToast('لم تقم بحفظ أي أدوات في المفضلة بعد ⭐ انقر على النجمة في أي بطاقة لحفظها!', 'fa-star', 'text-amber-400');
+                        showToast('لم تقم بحفظ أي أدوات في المفضلة بعد ⭐ انقر على النجمة في أي بطاقة لحفظها', 'fa-star', 'text-amber-400');
                     } else {
                         showToast(`عرض ${favs.length} أداة ومشروع من المفضلة ⭐`, 'fa-star', 'text-amber-400');
                     }
@@ -4353,7 +4678,7 @@
             const output = document.getElementById('gradCssOutput');
             if (output) {
                 navigator.clipboard.writeText(output.value).then(() => {
-                    showToast('تم نسخ كود CSS التدرج اللوني بنجاح! 🎨', 'fa-copy', 'text-purple-400');
+                    showToast('تم نسخ كود CSS التدرج اللوني بنجاح 🎨', 'fa-copy', 'text-purple-400');
                 });
             }
         }
@@ -4386,7 +4711,7 @@
             }
 
             if (tasbihCount === tasbihTarget) {
-                showToast(`ما شاء الله! أتممت ${tasbihTarget} تسبيحة 🕋✨`, 'fa-circle-check', 'text-emerald-400');
+                showToast(`ما شاء الله، أتممت ${tasbihTarget} تسبيحة 🕋✨`, 'fa-circle-check', 'text-emerald-400');
                 if (navigator.vibrate) {
                     navigator.vibrate([40, 60, 40]);
                 }
@@ -4448,7 +4773,7 @@
             link.click();
             document.body.removeChild(link);
 
-            showToast('تم تنزيل كرت الاتصال الرقمي (Yassen-PS.vcf) بنجاح! 🪪✨', 'fa-address-card', 'text-purple-400');
+            showToast('تم تنزيل كرت الاتصال الرقمي (Yassen-PS.vcf) بنجاح 🪪✨', 'fa-address-card', 'text-purple-400');
         }
 
         // Initialize Favorites System on DOM ready
@@ -4468,10 +4793,6 @@
             toast.classList.add('show');
             setTimeout(() => toast.classList.remove('show'), 3000);
         }
-
-        setTimeout(() => {
-            showToast('مرحباً بك في Tools Hub Pro! ✨', 'fa-hand-sparkles', 'text-purple-400');
-        }, 2000);
 
         // ============ Smooth Scroll ============
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -4505,10 +4826,90 @@
 
         // ============ Newsletter Subscribe ============
         function subscribeNewsletter() {
-            showToast('شكراً لاشتراكك! 🎉', 'fa-circle-check', 'text-green-400');
+            showToast('شكراً لاشتراكك 🎉', 'fa-circle-check', 'text-green-400');
         }
 
-        // DevTools / contextmenu protection removed for AI Studio iframe environment
+        // ============ F12 & DevTools Protection (حماية F12 وأدوات المطورين) ============
+        (function initDevToolsProtection() {
+            // Block F12 and DevTools shortcut key combinations
+            document.addEventListener('keydown', function (e) {
+                const key = (e.key || '').toUpperCase();
+                const keyCode = e.keyCode || e.which;
+                const isCtrlOrCmd = e.ctrlKey || e.metaKey;
+                const isShift = e.shiftKey;
+                const isAlt = e.altKey;
+
+                // 1. F12 key
+                if (key === 'F12' || keyCode === 123) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    showToast('تم تعطيل مفتاح F12 لحماية الكود والمحتوى 🔒', 'fa-shield-halved', 'text-amber-400');
+                    return false;
+                }
+
+                // 2. Ctrl + Shift + I / J / C (Inspect / Console / Element Selector)
+                if (isCtrlOrCmd && isShift && (key === 'I' || key === 'J' || key === 'C' || keyCode === 73 || keyCode === 74 || keyCode === 67)) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    showToast('عذراً، تم تعطيل فحص العناصر (Inspect) 🔒', 'fa-shield-halved', 'text-amber-400');
+                    return false;
+                }
+
+                // 3. Ctrl + U (View Page Source) or Cmd + Option + U
+                if ((isCtrlOrCmd && (key === 'U' || keyCode === 85)) || (e.metaKey && isAlt && key === 'U')) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    showToast('عذراً، تم تعطيل عرض سورس الصفحة (View Source) 🔒', 'fa-shield-halved', 'text-amber-400');
+                    return false;
+                }
+
+                // 4. Ctrl + S (Save Page)
+                if (isCtrlOrCmd && !isShift && (key === 'S' || keyCode === 83)) {
+                    // Only block if not focused in a code editor/textarea
+                    const activeTag = document.activeElement ? document.activeElement.tagName : '';
+                    if (activeTag !== 'TEXTAREA' && activeTag !== 'INPUT') {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        showToast('تم تعطيل حفظ الصفحة لحماية المحتوى 🔒', 'fa-shield-halved', 'text-amber-400');
+                        return false;
+                    }
+                }
+
+                // 5. Mac DevTools combinations: Cmd + Option + I / J / C
+                if (e.metaKey && isAlt && (key === 'I' || key === 'J' || key === 'C')) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    showToast('تم تعطيل أدوات المطورين لحماية المحتوى 🔒', 'fa-shield-halved', 'text-amber-400');
+                    return false;
+                }
+            }, true);
+
+            // Right Click (Context Menu) Protection - preserves input/textarea usability
+            document.addEventListener('contextmenu', function (e) {
+                const target = e.target;
+                const isFormInput = target && (
+                    target.tagName === 'INPUT' ||
+                    target.tagName === 'TEXTAREA' ||
+                    target.isContentEditable ||
+                    target.closest('input, textarea, [contenteditable="true"]')
+                );
+
+                // Allow right-click in inputs/textareas so users can paste/copy their text in tools
+                if (!isFormInput) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    showToast('تم تعطيل القائمة السريعة لحماية الملكية الفكرية 🛡️', 'fa-shield-halved', 'text-purple-400');
+                    return false;
+                }
+            }, true);
+
+            // Prevent image dragging / downloading via drag
+            document.addEventListener('dragstart', function (e) {
+                if (e.target && e.target.tagName === 'IMG') {
+                    e.preventDefault();
+                }
+            }, true);
+        })();
 
         // ============ Easter Egg - Konami Code ============
         const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
@@ -4517,7 +4918,7 @@
             if (e.key === konamiCode[konamiIndex]) {
                 konamiIndex++;
                 if (konamiIndex === konamiCode.length) {
-                    showToast('🎉 لقد اكتشفت السر المخفي!', 'fa-star', 'text-yellow-400');
+                    showToast('🎉 لقد اكتشفت السر المخفي', 'fa-star', 'text-yellow-400');
                     document.body.style.animation = 'gradient-x 2s ease infinite';
                     // Confetti effect
                     for (let i = 0; i < 50; i++) {
@@ -4849,16 +5250,16 @@
             urlInput.setSelectionRange(0, 99999);
 
             navigator.clipboard.writeText(urlInput.value).then(() => {
-                if (copyText) copyText.textContent = 'تم النسخ!';
+                if (copyText) copyText.textContent = 'تم النسخ';
                 if (copyIcon) copyIcon.className = 'fa-solid fa-check text-green-400';
-                showToast('تم نسخ الرابط بنجاح! 📋✨', 'fa-copy', 'text-purple-400');
+                showToast('تم نسخ الرابط بنجاح 📋✨', 'fa-copy', 'text-purple-400');
                 setTimeout(() => {
                     if (copyText) copyText.textContent = 'نسخ الرابط';
                     if (copyIcon) copyIcon.className = 'fa-solid fa-copy';
                 }, 2500);
             }).catch(() => {
                 document.execCommand('copy');
-                showToast('تم نسخ الرابط بنجاح! 📋', 'fa-copy', 'text-purple-400');
+                showToast('تم نسخ الرابط بنجاح 📋', 'fa-copy', 'text-purple-400');
             });
         }
 
@@ -4894,7 +5295,7 @@
                     text: 'Tools Hub — أدوات وتطبيقات رقمية سريعة ومجانية 🌟',
                     url: window.location.href
                 }).then(() => {
-                    showToast('شكراً لمشاركتك الموقع! ❤️', 'fa-heart', 'text-pink-400');
+                    showToast('شكراً لمشاركتك الموقع ❤️', 'fa-heart', 'text-pink-400');
                     closeShareModal();
                 }).catch(() => {});
             }
@@ -4933,14 +5334,14 @@
 
         window.addEventListener('appinstalled', () => {
             deferredPWAInstallPrompt = null;
-            showToast('تم تثبيت تطبيق Tools Hub على جهازك بنجاح! 🎉📱', 'fa-circle-check', 'text-green-400');
+            showToast('تم تثبيت تطبيق Tools Hub على جهازك بنجاح 🎉📱', 'fa-circle-check', 'text-green-400');
             const navBtn = document.getElementById('pwaInstallNavBtn');
             if (navBtn) navBtn.style.display = 'none';
         });
 
         function triggerPWAInstall() {
             if (isAppStandalone) {
-                showToast('التطبيق مثبت بالفعل ويعمل كـ PWA على جهازك! ✓', 'fa-circle-check', 'text-green-400');
+                showToast('التطبيق مثبت بالفعل ويعمل كـ PWA على جهازك ✓', 'fa-circle-check', 'text-green-400');
                 return;
             }
 
@@ -4948,7 +5349,7 @@
                 deferredPWAInstallPrompt.prompt();
                 deferredPWAInstallPrompt.userChoice.then((choiceResult) => {
                     if (choiceResult.outcome === 'accepted') {
-                        showToast('جاري تثبيت التطبيق... شكراً لدعمك! 🚀', 'fa-download', 'text-purple-400');
+                        showToast('جاري تثبيت التطبيق... شكراً لدعمك 🚀', 'fa-download', 'text-purple-400');
                     }
                     deferredPWAInstallPrompt = null;
                 });
@@ -5002,7 +5403,7 @@
 
             // Show success notification & UI
             document.getElementById('toolRequestSuccess')?.classList.remove('hidden');
-            showToast('تم استلام اقتراحك بنجاح! شكراً لمشاركتك القيّمة 🎉', 'fa-lightbulb', 'text-amber-400');
+            showToast('تم استلام اقتراحك بنجاح، شكراً لمشاركتك القيّمة 🎉', 'fa-lightbulb', 'text-amber-400');
 
             // Reset form
             document.getElementById('toolRequestForm')?.reset();
